@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="来自喵星系程序猫MeowLynxSea的星际漫游日志，记录代码创作、Minecraft模组开发与互联网探索。提供图片图床、服务器插件、监控工具等开源项目。">
+    <meta name="keywords" content="MeowLynxSea, 星际漫游日志, Minecraft插件, 图片图床, 服务器监控, 开源项目, 程序猫, Catism Image, Proksea, Uptimeow">
+    <meta name="author" content="MeowLynxSea">
+    <meta name="copyright" content="© MeowLynxSea. All rights reserved. 京ICP备2025129506号-1">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Meow's Log - 星际程序猫的地球探索站">
+    <meta property="og:description" content="来自喵星的开发者日志，分享Minecraft模组开发、服务器工具与创意编程项目">
+    <meta property="og:image" content="MeowLynxSea.webp">
+    <meta property="og:url" content="https://www.meowdream.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Meow's Log">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Meow's Log - 星际程序猫的地球探索站">
+    <meta name="twitter:description" content="记录来自喵星系程序猫的创意编程与星际漫游日志">
+    <meta name="twitter:image" content="MeowLynxSea.webp">
+    <title>MeowLynxSea 的个人空间</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="none" rel="stylesheet">
+</head>
+
+<body class="antialiased">
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+    </div>
+
+    <div class="relative h-screen md:flex">
+        <header id="mobile-header" class="md:hidden fixed top-0 left-0 right-0 z-30 flex items-center justify-between p-4 bg-[#1e1f20]/80 backdrop-blur-sm border-b border-gray-800">
+            <button id="mobile-menu-btn" class="text-gray-300 hover:text-white p-2" aria-label="菜单">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <h2 class="text-xl font-bold gemini-gradient-text">Meow's Log</h2>
+            <div class="w-8"></div>
+        </header>
+
+        <aside id="sidebar" class="sidebar w-72 p-4 border-r border-gray-800 fixed md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 flex flex-col">
+            <div class="flex items-center mb-6 flex-shrink-0">
+                <h2 class="text-xl font-bold gemini-gradient-text cursor-pointer" onclick="showHome()">Meow's Log</h2>
+            </div>
+            <nav id="sidebar-nav" class="space-y-4 overflow-y-auto">
+                <div>
+                    <div class="space-y-1">
+                        <div id="nav-link-home" class="session-link active cursor-pointer" onclick="showHome()">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            <span>主页</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="px-4 text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">社交跃迁点</h3>
+                    <div class="space-y-1">
+                        <a href="https://github.com/MeowLynxSea" target="_blank" class="session-link">
+                            <svg role="img" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <title>GitHub</title>
+                                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z" />
+                            </svg>
+                            <span>GitHub 代码仓库</span>
+                        </a>
+                        <a href="https://space.bilibili.com/355306947" target="_blank" class="session-link">
+                            <svg role="img" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <title>bilibili</title>
+                                <path d="M15.54 2.28a.3.3 0 01.46.3v1.86a.3.3 0 01-.3.3h-1.85a.3.3 0 01-.3-.3V2.58a.3.3 0 01.3-.3h1.69zM8.46 2.28a.3.3 0 01.3.3v1.86a.3.3 0 01-.3.3H6.6a.3.3 0 01-.3-.3V2.58a.3.3 0 01.3-.3h1.86zm7.08 4.5H8.46a.3.3 0 00-.3.3v10.64a.3.3 0 00.3.3h7.08a.3.3 0 00.3-.3V7.08a.3.3 0 00-.3-.3zM9.61 9.46h4.78v1.86H9.61V9.46zm0 3.72h4.78v1.86H9.61v-1.86zM22.2 6.42A2.43 2.43 0 0024 4.2a2.47 2.47 0 00-1.8-2.23 4.65 4.65 0 00-3.37.22A4.54 4.54 0 0015.9 0h-7.8a4.54 4.54 0 00-2.94 2.2 4.65 4.65 0 00-3.37-.22A2.47 2.47 0 000 4.2a2.43 2.43 0 001.8 2.22 4.65 4.65 0 000 8.76A2.43 2.43 0 000 17.4a2.47 2.47 0 001.8 2.23 4.65 4.65 0 003.37-.22A4.54 4.54 0 008.1 24h7.8a4.54 4.54 0 002.94-2.2 4.65 4.65 0 003.37.22A2.47 2.47 0 0024 19.8a2.43 2.43 0 00-1.8-2.22 4.65 4.65 0 000-8.76z" />
+                            </svg>
+                            <span>Bilibili 影像记录</span>
+                        </a>
+                        <a href="https://blog.meowdream.cn" target="_blank" class="session-link">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                            <span>个人博客</span>
+                        </a>
+                        <a href="https://ifdian.net/a/meowdream" target="_blank" class="session-link">
+                            <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>爱发电 能量补充</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="px-4 text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">我的造物</h3>
+                    <div class="space-y-1">
+                        <div>
+                            <div class="session-link cursor-pointer" onclick="toggleCollapse('taleswind')">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                                <span>风原物语 [MC]</span>
+                                <svg id="taleswind-icon" class="expand-icon ml-auto w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                            <div id="taleswind" class="sub-items pl-4 ml-2 border-l border-gray-700">
+                                <div class="space-y-1 pt-1">
+                                    <a href="https://taleswind.cn" target="_blank" class="session-link"><span>官网</span></a>
+                                    <a href="https://space.bilibili.com/3546626855536975" target="_blank" class="session-link"><span>Bilibili</span></a>
+                                    <div class="session-link cursor-pointer" onclick="copyQQGroup()"><span>QQ群 (点击复制)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="nav-link-catism" class="session-link cursor-pointer" onclick="showProject('catism')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 010-2.828L16 8M9 17h.01"></path>
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            </svg>
+                            <span>Catism Image 图床</span>
+                        </div>
+                        <div id="nav-link-meowlogin" class="session-link cursor-pointer" onclick="showProject('meowlogin')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                            <span>MeowLogin [插件]</span>
+                        </div>
+                        <div id="nav-link-proksea" class="session-link cursor-pointer" onclick="showProject('proksea')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                            </svg>
+                            <span>Proksea [代理]</span>
+                        </div>
+                        <div id="nav-link-uptimeow" class="session-link cursor-pointer" onclick="showProject('uptimeow')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v14"></path>
+                            </svg>
+                            <span>Uptimeow [监控]</span>
+                        </div>
+                        <div id="nav-link-ceditor" class="session-link cursor-pointer" onclick="showProject('ceditor')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>ceditor [编辑器]</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+        <div id="main-content-wrapper" class="flex-1 flex flex-col pt-16 md:pt-0 overflow-y-auto h-full">
+            <main id="main-content" class="flex-grow p-4 md:p-8">
+                <div id="home-view" class="w-full flex flex-col items-center">
+                    <div class="w-full max-w-4xl flex flex-col items-center px-4 pt-16 sm:pt-24 md:pt-48">
+                        <header class="text-center mb-8">
+                            <div class="relative inline-block p-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full mb-4 cursor-pointer z-10" onclick="showHome()">
+                                <img src="MeowLynxSea.webp" alt="Avatar" class="w-24 h-24 rounded-full border-4 border-[#131314]">
+                            </div>
+
+                            <div class="relative inline-block">
+                                <h1 id="name" class="text-4xl md:text-5xl font-bold gemini-gradient-text">MeowLynxSea</h1>
+                                <svg class="line-cat hidden md:block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M 20,50 C 20,20 80,20 80,50 M 30,40 C 35,30 45,30 50,40 M 50,40 C 55,30 65,30 70,40" />
+                                    <line x1="25" y1="55" x2="35" y2="60" />
+                                    <line x1="25" y1="60" x2="35" y2="65" />
+                                    <line x1="25" y1="65" x2="35" y2="70" />
+                                    <line x1="75" y1="55" x2="65" y2="60" />
+                                    <line x1="75" y1="60" x2="65" y2="65" />
+                                    <line x1="75" y1="65" x2="65" y2="70" />
+                                    <path d="M 45,60 Q 50,65 55,60" />
+                                </svg>
+                            </div>
+                            <p class="mt-3 text-lg text-gray-400">一只来自喵星、在地球旅行的程序猫</p>
+                        </header>
+
+                        <div class="flex items-center space-x-3 mb-10 opacity-0" id="status-line" style="animation: float-in 1s ease-out 0.5s forwards;">
+                            <div class="status-indicator"></div>
+                            <span class="text-gray-300 text-sm">思念的电波正在跳跃...</span>
+                        </div>
+
+                        <div id="keywords-container" class="max-w-2xl flex flex-wrap justify-center items-start gap-x-4 gap-y-1 mb-10 px-4 sm:pb-32 pt-8 md:pb-32">
+                        </div>
+
+                        <div class="w-full grid grid-cols-1 gap-8">
+                            <div class="card p-6">
+                                <h2 class="text-2xl font-semibold mb-4 text-pink-300">>> 星际漫游日志</h2>
+                                <p class="text-gray-300 leading-relaxed">
+                                    你好，地球人！我是 MeowLynxSea，一名来自遥远喵星系的旅行者。在我的母星，我们用代码编织星云，用逻辑构建梦境。我乘坐我的“好奇号”飞船来到地球，对你们的“互联网”和“电子游戏”产生了浓厚兴趣。在这里，我尝试用喵星的思维方式理解和创造，这个主页就是我与这个星球沟通的窗口之一。
+                                </p>
+                            </div>
+                            <div class="card p-6">
+                                <h2 class="text-2xl font-semibold mb-4 text-blue-300">>> 地球观测项目</h2>
+                                <div class="space-y-2">
+                                    <div onclick="showProject('catism')" class="group p-4 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-gray-700/50 rounded-md w-10 h-10 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 010-2.828L16 8M9 17h.01"></path>
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-100 group-hover:text-sky-300 transition-colors">Catism Image 图床</h3>
+                                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">一个小巧、稳定的星际图片存储服务，支持拖拽上传与链接一键复制。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div onclick="toggleCollapse('taleswind')" class="group p-4 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-gray-700/50 rounded-md w-10 h-10 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-100 group-hover:text-emerald-300 transition-colors">“风原物语”模拟世界</h3>
+                                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">一个用 Minecraft 方块构建的模拟世界，欢迎来我的小宇宙里一起玩耍。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div onclick="showProject('meowlogin')" class="group p-4 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-gray-700/50 rounded-md w-10 h-10 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-100 group-hover:text-red-300 transition-colors">MeowLogin [插件]</h3>
+                                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">为 Minecraft 服务器提供与 QQ 频道绑定的登录验证，有效抵御机器人入侵。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div onclick="showProject('proksea')" class="group p-4 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-gray-700/50 rounded-md w-10 h-10 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-100 group-hover:text-teal-300 transition-colors">Proksea [代理]</h3>
+                                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">一个轻量级、高扩展性的 Minecraft 代理，允许开发者轻松修改网络数据流。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div onclick="showProject('uptimeow')" class="group p-4 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-gray-700/50 rounded-md w-10 h-10 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v14"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-100 group-hover:text-amber-300 transition-colors">Uptimeow [监控]</h3>
+                                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">使用 Go 和 RCON 协议实时监控 Minecraft 服务器状态，并在异常时发出警报。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div onclick="showProject('ceditor')" class="group p-4 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-gray-700/50 rounded-md w-10 h-10 flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-100 group-hover:text-indigo-300 transition-colors">ceditor [编辑器]</h3>
+                                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">一款向计算机早期历史致敬的 Windows 命令行文本编辑器，小巧而快速。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="project-view" class="hidden h-full flex items-center justify-center"></div>
+            </main>
+
+            <footer class="footer w-full py-4 px-8 text-center text-sm">
+                <p>&copy; <span id="year"></span> MeowLynxSea. All rights reserved.</p>
+                <p class="mt-1"><a href="https://beian.mps.gov.cn/#/query/webSearch?code=11010802045904" rel="noreferrer" target="_blank"><img  src="beian.png" class="logos" style="width: 10px; display: inline; margin: 0 5px;">京公网安备11010802045904号</a> · <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2025129506号-1</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <div id="sidebar-backdrop" class="sidebar-backdrop md:hidden"></div>
+
+    <div id="toast" class="fixed bottom-10 right-10 bg-green-500 text-white py-2 px-5 rounded-lg shadow-xl text-base opacity-0 transform translate-y-4 transition-all duration-300" style="z-index: 10000;">
+        QQ群号已复制！
+    </div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const projectView = document.getElementById('project-view');
+        const homeView = document.getElementById('home-view');
+        const mainContent = document.getElementById('main-content');
+        const navContainer = document.getElementById('sidebar-nav');
+
+        const projects = {
+            'catism': {
+                title: 'Catism Image 图床',
+                description: '我发现地球上的生物很喜欢分享图片，于是我用星际技术搭建了一个小巧、稳定、易用的图片存储服务。<br>它支持拖拽上传、链接一键复制，上传图片批量管理，支持对NSFW图片的识别。项目已开源，欢迎围观和贡献！',
+                repo: 'https://github.com/MeowLynxSea/CatismImage',
+                serviceUrl: 'https://image.meowdream.cn'
+            },
+            'meowlogin': {
+                title: 'MeowLogin - MC QQ频道登录插件',
+                description: '我开发了这款Bukkit插件。它将Minecraft服务器的登录验证与QQ频道（一种地球上的通讯软件）绑定，并内置了随机生成的图形验证码，有效阻止了恶意机器人进入。',
+                repo: 'https://github.com/MeowLynxSea/MeowLogin'
+            },
+            'proksea': {
+                title: 'Proksea - 可扩展JS Minecraft代理',
+                description: '这是我对地球网络数据流的一次实验。通过JavaScript，我构建了一个轻量级、高度可扩展的Minecraft代理服务器。开发者可以轻松编写插件，实现数据包的修改、转发、甚至自定义游戏协议，就像在星际间建立通讯信道一样灵活。',
+                repo: 'https://github.com/MeowLynxSea/Proksea'
+            },
+            'uptimeow': {
+                title: 'Uptimeow - Minecraft服务器监控面板',
+                description: '在喵星，我们时刻关注着每个系统的脉搏。<br>Uptimeow就是这种理念的产物。它使用Go语言和RCON协议，实时监控Minecraft服务器的状态（包括在线人数、玩家列表、TPS等等）。一旦出现异常，它会立刻通过配置好的方式发出警报，确保服务器稳定运行。此外，可以通过加入自定义的指令和代码监控更多参数、自定义警报消息。<br>前后端均已开源，欢迎查看喵~',
+                repo: 'https://github.com/MeowLynxSea/Uptimeow',
+                serviceUrl: 'https://uptimeow.meowdream.cn'
+            },
+            'ceditor': {
+                title: 'ceditor - Windows命令行文本编辑器',
+                description: '回溯地球的计算机早期历史，我对纯文本的命令行界面产生了兴趣。<br>这款使用C++编写的文本编辑器，是对那个时代的一次致敬。它小巧、快速，专注于在Windows命令行环境中提供核心的文本编辑功能。',
+                repo: 'https://github.com/MeowLynxSea/ceditor'
+            }
+        };
+
+        function setActiveLink(linkId) {
+            const links = navContainer.querySelectorAll('.session-link');
+            links.forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById(linkId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        function showProject(name) {
+            const project = projects[name];
+            if (!project) return;
+
+            homeView.style.display = 'none';
+
+            projectView.innerHTML = `
+                <div class="w-full max-w-4xl animate-fade-in">
+                    <div class="card p-6 md:p-8">
+                        <h2 class="text-3xl font-bold gemini-gradient-text mb-4">${project.title}</h2>
+                        <p class="text-gray-300 leading-relaxed">${project.description}</p>
+                        <div class="mt-6 flex flex-wrap gap-4">
+                            <a href="${project.repo}" target="_blank" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors">
+                                <svg class="w-5 h-5 mr-2" role="img" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>
+                                在 GitHub 上查看
+                            </a>
+                            ${project.serviceUrl ? `
+                            <a href="${project.serviceUrl}" target="_blank" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                访问服务
+                            </a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+            projectView.classList.remove('hidden');
+            setActiveLink('nav-link-' + name);
+
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.remove('active');
+            }
+        }
+
+        function showHome() {
+            projectView.classList.add('hidden');
+            homeView.style.display = 'flex';
+            setActiveLink('nav-link-home');
+
+            if (window.innerWidth < 768 && !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.remove('active');
+            }
+        }
+
+        function createKeywords() {
+            const container = document.getElementById('keywords-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            const keywords = [{
+                text: '☕ Jvav',
+                description: '我说实话IDEA真好用吧我说实话IDEA真好用吧我说实话IDEA真好用吧我说实话IDEA真好用吧我说实话IDEA真好用吧我说实话IDEA真好用吧'
+            }, {
+                text: 'Go',
+                description: '构建后端服务的利器（？）遇事不决go一下'
+            }, {
+                text: '💎⛏ Minecraft',
+                description: '不仅是游戏，更是创造与探索的无限世界。'
+            }, {
+                text: '🤗 Hug me',
+                description: '需要温暖的抱抱！'
+            }, {
+                text: 'JavaScr',
+                description: 'JavaScript一把梭了'
+            }, {
+                text: '🏳️‍⚧️ Debian',
+                description: '是的这个emoji是Debian（'
+            }, {
+                text: '🐱 Cat',
+                description: '喵~'
+            }, {
+                text: 'Coding as hobby',
+                description: '我爱编程😊我讨厌编程😈我爱编程😊我讨厌编程😈我爱编程😊我讨厌编程😈我爱编程😊我讨厌编程😈'
+            }, {
+                text: 'Open Source',
+                description: '相信分享的力量'
+            }];
+
+            const tooltip = document.getElementById('keyword-tooltip');
+
+            const centerX = container.offsetWidth / 2;
+            const centerY = container.offsetHeight / 2;
+
+            const radiusX = centerX - 20;
+            const radiusY = centerY - 80;
+
+            const planet = document.createElement('div');
+            planet.id = 'planet';
+            container.appendChild(planet);
+
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+
+            svg.style.position = 'absolute';
+            svg.style.left = '0';
+            svg.style.top = '0';
+            svg.style.width = '100%';
+            svg.style.height = '100%';
+            svg.style.zIndex = 1;
+
+            const ellipse = document.createElementNS(svgNS, "ellipse");
+            const ellipseAngle = -30;
+
+            ellipse.setAttribute('cx', centerX);
+            ellipse.setAttribute('cy', centerY);
+            ellipse.setAttribute('rx', radiusX);
+            ellipse.setAttribute('ry', radiusY);
+            ellipse.setAttribute('fill', 'none');
+            ellipse.setAttribute('stroke', 'rgba(205, 214, 244, 0.3)');
+            ellipse.setAttribute('stroke-width', '2');
+            ellipse.setAttribute('stroke-dasharray', '5, 10');
+            ellipse.setAttribute('transform', `rotate(${ellipseAngle} ${centerX} ${centerY})`);
+
+            svg.appendChild(ellipse);
+            container.appendChild(svg);
+
+            const orbitingKeywords = [];
+            const orbitSpeed = 0.06;
+            const maxSelfRotationSpeed = 0.08;
+
+            // --- 动画与Tooltip状态变量 ---
+            let currentSpeed = 1.0;
+            let targetSpeed = 1.0;
+            let systemAngle = 0;
+            let lastTime = performance.now();
+            let hideTooltipTimeoutId = null; // 用于存储隐藏tooltip的定时器ID
+
+            keywords.forEach((keyword, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'keyword-wrapper';
+
+                const tag = document.createElement('div');
+                tag.className = 'keyword-tag';
+                tag.textContent = keyword.text;
+
+                wrapper.appendChild(tag);
+                container.appendChild(wrapper);
+
+                const baseAngle = (index / keywords.length) * 2 * Math.PI;
+                const selfRotationSpeed = (Math.random() - 0.5) * 2 * maxSelfRotationSpeed;
+
+                const item = {
+                    wrapper: wrapper,
+                    tag: tag,
+                    baseAngle: baseAngle,
+                    selfRotationSpeed: selfRotationSpeed,
+                    selfRotationAngle: 0,
+                    description: keyword.description
+                };
+                orbitingKeywords.push(item);
+
+                // --- 事件监听 ---
+                wrapper.addEventListener('mouseenter', () => {
+                    // 【修复】如果存在隐藏tooltip的定时器，立即清除它
+                    if (hideTooltipTimeoutId) {
+                        clearTimeout(hideTooltipTimeoutId);
+                        hideTooltipTimeoutId = null;
+                    }
+
+                    targetSpeed = 0.0;
+                    tooltip.textContent = item.description;
+                    tooltip.style.display = 'block';
+                    setTimeout(() => {
+                        tooltip.style.opacity = '1';
+                        tooltip.style.transform = 'scale(1)';
+                    }, 10);
+                });
+
+                wrapper.addEventListener('mouseleave', () => {
+                    targetSpeed = 1.0;
+                    tooltip.style.opacity = '0';
+                    tooltip.style.transform = 'scale(0.95)';
+                    
+                    // 【修复】启动隐藏定时器，并保存其ID
+                    hideTooltipTimeoutId = setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 200);
+                });
+
+                wrapper.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = `${e.clientX + 15}px`;
+                    tooltip.style.top = `${e.clientY + 15}px`;
+                });
+            });
+
+            function animate(time) {
+                const dt = time - lastTime;
+                lastTime = time;
+
+                const easingFactor = 0.05;
+                currentSpeed += (targetSpeed - currentSpeed) * easingFactor;
+                
+                if (currentSpeed > 0.001) {
+                    const speedMultiplier = dt / 16;
+                    systemAngle += (orbitSpeed / 50) * currentSpeed * speedMultiplier;
+
+                    orbitingKeywords.forEach(item => {
+                        const currentAngle = item.baseAngle + systemAngle;
+                        const unrotatedX = radiusX * Math.cos(currentAngle);
+                        const unrotatedY = radiusY * Math.sin(currentAngle);
+                        const rotatedX = unrotatedX * Math.cos(ellipseAngle * Math.PI / 180) - unrotatedY * Math.sin(ellipseAngle * Math.PI / 180);
+                        const rotatedY = unrotatedX * Math.sin(ellipseAngle * Math.PI / 180) + unrotatedY * Math.cos(ellipseAngle * Math.PI / 180);
+
+                        if (unrotatedY < 0) {
+                            item.wrapper.style.zIndex = 9;
+                            item.wrapper.style.filter = 'brightness(0.7)';
+                        } else {
+                            item.wrapper.style.zIndex = 11;
+                            item.wrapper.style.filter = 'brightness(1)';
+                        }
+
+                        const finalX = centerX + rotatedX;
+                        const finalY = centerY + rotatedY;
+                        item.wrapper.style.transform = `translate(${finalX}px, ${finalY}px) translate(-50%, -50%)`;
+                        
+                        item.selfRotationAngle += (item.selfRotationSpeed / 10) * currentSpeed * speedMultiplier;
+                        item.tag.style.transform = `rotate(${item.selfRotationAngle}rad)`;
+                    });
+                }
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function copyQQGroup() {
+            navigator.clipboard.writeText('1018515932').then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('opacity-0', 'translate-y-4');
+                toast.classList.add('opacity-100', 'translate-y-0');
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'translate-y-4');
+                }, 2000);
+            }).catch(err => {
+                console.error('无法复制: ', err);
+            });
+        }
+
+        function toggleCollapse(elementId) {
+            const element = document.getElementById(elementId);
+            const icon = document.getElementById(elementId + '-icon');
+            element.classList.toggle('open');
+            icon.classList.toggle('rotate-90');
+        }
+
+        function loadCSSAsync(url) {
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = url;
+            document.head.appendChild(link);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+        });
+
+        window.onload = function() {
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+                backdrop.classList.toggle('active');
+            });
+
+            backdrop.addEventListener('click', () => {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.remove('active');
+            });
+
+            loadCSSAsync("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+            createKeywords();
+        }
+    </script>
+    
+    <div id="keyword-tooltip"></div>
+</body>
+
+</html>
